@@ -17,9 +17,12 @@ _cmd_sub: rospy.Subscriber = None
 _settings_obj: dict = None
 
 
-def _joystick_cmd_read_handler(msg: ros_std_msgs.String):
+def _keyboard_cmd_read_handler(msg: ros_std_msgs.String):
     # out_serial_packet = f"0000,0000,0000,0000,{msg.data}"
+    print(msg.data)
     serial_driver.write_raw(msg.data)
+
+
 
 
 def ros_node_setup():
@@ -33,7 +36,7 @@ def ros_node_setup():
         sys.exit()
 
     _cmd_sub = rospy.Subscriber(
-        '/joystick_node/cmd', ros_std_msgs.String, _joystick_cmd_read_handler)
+        '/keyboard_node/cmd', ros_std_msgs.String, _keyboard_cmd_read_handler)
 
     serial_driver.init_driver()
     _settings_obj = set_man.get_settings()

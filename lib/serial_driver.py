@@ -41,7 +41,7 @@ def write_raw(msg: str):
     if _serial_port == None:
         return
 
-    msg_to_write = f"{msg};"
+    msg_to_write = f"{msg}"
     msg_buffer = msg_to_write.encode()
 
     if _serial_port != None:
