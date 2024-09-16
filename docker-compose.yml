@@ -1,4 +1,3 @@
-version: '3'
 
 services:
 
@@ -9,6 +8,6 @@ services:
     image: 'ros:noetic-ros-base-focal'
     network_mode: 'host'
     environment:
-      - ROS_MASTER_URI=http://192.168.120.253:11311/
-      - ROS_IP=192.168.120.253
+      - ROS_MASTER_URI=http://192.168.0.102:11311/
+      - ROS_IP=192.168.0.102
     command: 'roscore'

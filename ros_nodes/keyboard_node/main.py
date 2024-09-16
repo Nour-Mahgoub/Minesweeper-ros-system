@@ -48,7 +48,7 @@ def ros_node_setup():
         cmd_topic_id, ros_std_msgs.String, queue_size=q_size)
 
     pygame.init()
-    pygame.display.set_mode((1, 1))  # Create a 1x1 pixel window
+    pygame.display.set_mode((600, 400))  # Create a 1x1 pixel window
 
 
 def ros_node_loop():
@@ -62,7 +62,7 @@ def ros_node_loop():
                 print(event.key)
                 _cmd_pub.publish(_KEY_MAP[event.key])
 
-# if __name__ == '__main__':
-#     ros_node_setup()
-#     while True:
-#         ros_node_loop()
+if __name__ == '__main__':
+    ros_node_setup()
+    while True:
+        ros_node_loop()
