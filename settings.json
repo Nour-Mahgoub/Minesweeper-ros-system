@@ -8,7 +8,7 @@
         "nodes": {
             "main_cu": [
                 "camera_adapter_node", "serial_interface_node", "joystick_node_test","basler_adopter_nod",
-                 "keyboard_node", "serial_node_test"
+                 "keyboard_node"
             ],
             "raspi": []
         },
