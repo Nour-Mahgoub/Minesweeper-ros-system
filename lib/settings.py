@@ -6,8 +6,6 @@ def get_settings() -> dict:
 
     with open('./settings.json', 'r') as f:
         set_json_txt = f.read()
-        print(set_json_txt)
         settings_obj = json.loads(set_json_txt)
-        print('done')
 
     return settings_obj

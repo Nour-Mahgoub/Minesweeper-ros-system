@@ -5,12 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Current File",
-            "type": "python",
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/ros_nodes/camera_adapter_node/bootstrap.py",
+            "program": "${file}",
             "console": "integratedTerminal",
-            "justMyCode": true
+            "preLaunchTask": "start"
         }
     ]
 }
