@@ -17,10 +17,7 @@ services:
       - IP_CAMERA_URL='http://192.168.1.9:8080/video'
 
     command: 'roscore'
-    volumes:
-      - C:\Users\Hamza\Documents\Minesweeper-ros-system:/home/Minesweeper-ros-system
+
     ports:
       - "5000:5000"  # Map host port 5000 to container port 5000
-    build:
-      context: .
-      dockerfile: Dockerfile
+
