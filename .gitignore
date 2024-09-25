@@ -2,3 +2,4 @@
 dump/
 .vscode
 __pycache__
+.git_key

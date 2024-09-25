@@ -41,22 +41,22 @@ def ros_node_setup():
 
 def ros_node_loop():
     # read frame
-    # frame = _camera_adapter.get_frame()
+    frame = _camera_adapter.get_frame()
 
 
     ##### Hamzas code Testing ####
 
-    # Replace with your IP webcam URL
-    _camera_url = 'http://192.168.43.1:8080/video'
-    # Open the video stream
-    cap = cv2.VideoCapture(_camera_url)
+    # #Replace with your IP webcam URL
+    # _camera_url = 'http://192.168.43.1:8080/video'
+    # #Open the video stream
+    # cap = cv2.VideoCapture(_camera_url)
 
-    if not cap.isOpened():
-        print("Error: Could not open video stream.")
-        exit()
+    # if not cap.isOpened():
+    #     print("Error: Could not open video stream.")
+    #     exit()
 
-    # Capture frame-by-frame
-    ret, frame = cap.read()
+    # #Capture frame-by-frame
+    # ret, frame = cap.read()
 
     #################################
 
