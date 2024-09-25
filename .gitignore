@@ -2,4 +2,8 @@
 dump/
 .vscode
 __pycache__
+<<<<<<< HEAD
 .devcontainer
+=======
+.git_key
+>>>>>>> 0a288c460a94d83070dc81747a77d755ed57652e
