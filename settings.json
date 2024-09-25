@@ -1,13 +1,13 @@
 {
     "networking": {
-        "main_cu": "192.168.0.102",
-        "raspi": "192.168.0.102"
+        "main_cu": "localhost",
+        "raspi": "localhost"
     },
     "ros": {
         "msg_queue_size": 10,
         "nodes": {
             "main_cu": [
-                "camera_adapter_node", "keyboard_node", "serial_interface_node", "joystick_node"
+                "camera_node", "keyboard_node", "serial_interface_node", "joystick_node"
             ],
             "raspi": []
         },
