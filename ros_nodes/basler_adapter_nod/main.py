@@ -42,6 +42,8 @@ def ros_node_setup():
 def ros_node_loop():
     # read frame
     frame = _camera_adapter.get_frame()
+    # read frame
+    frame = _camera_adapter.get_frame()
 
 
     ##### Hamzas code Testing ####

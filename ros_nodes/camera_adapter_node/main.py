@@ -11,6 +11,15 @@ import lib.settings as set_man
 
 # module config
 _NODE_NAME = 'camera_adapter_node'
+_camera_adapter = cv2.VideoCapture(0)
+_cam_feed_pub: rospy.Publisher = None
+_settings_obj: dict = None
+
+
+def ros_node_setup():
+    global _cam_feed_pub
+    global _settings_obj
+
 
 # module state
 _camera_adapter = cv2.VideoCapture(0)

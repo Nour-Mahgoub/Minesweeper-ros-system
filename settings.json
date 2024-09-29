@@ -1,17 +1,20 @@
 {
     "networking": {
-        "main_cu": "localhost",
-        "raspi": "localhost"
+        "main_cu": "192.168.0.104",
+        "raspi": "192.168.0.103"
     },
     "ros": {
         "msg_queue_size": 10,
         "nodes": {
             "main_cu": [
 
-                "camera_adapter_node", "serial_interface_node", "joystick_node_test","basler_adopter_nod",
-                 "keyboard_node", "serial_node_test"
+                //"camera_adapter_node", "serial_interface_node", "joystick_node_test","basler_adopter_nod",
+               //  "keyboard_node", "serial_node_test"
+               "joystick_node_test"
             ],
-            "raspi": []
+            "raspi": [
+                "serial_node_test"
+            ]
         },
         "ignore_machines": [],
         "ignore_nodes": []
@@ -23,15 +26,15 @@
             "INFO",
             "DEBUG"
         ]
-    },
-    "security": {
-        "main_cu": {
-            "username": "machine_ssh_username",
-            "password": "machine_ssh_password"
-        },
-        "raspi": {
-            "username": "machine_ssh_username",
-            "password": "machine_ssh_password"
-        }
     }
+    // "security": {
+    //     "main_cu": {
+    //         "username": "machine_ssh_username",
+    //         "password": "machine_ssh_password"
+    //     },
+    //     "raspi": {
+    //         "username": "machine_ssh_username",
+    //         "password": "machine_ssh_password"
+    //     }
+    // }
 }

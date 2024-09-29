@@ -7,20 +7,18 @@ services:
 
     image: 'ros:noetic-ros-base-focal'
     network_mode: 'host'
+          # - ROS_HOSTNAME=localhost
+      # - ROS_MASTER_URI=http://localhost:11311
+      # - IP_CAMERA_URL='http://192.168.1.9:8080/video'
     environment:
-      # - ROS_MASTER_URI=http://192.168.1.110:11311/
-      # - ROS_IP=192.168.1.110
+      - ROS_MASTER_URI=http://192.168.0.103:11311/
+      - ROS_IP=192.168.0.103
 
       #single machine config (testing)
-      - ROS_HOSTNAME=localhost
-      - ROS_MASTER_URI=http://localhost:11311
-      - IP_CAMERA_URL='http://192.168.1.9:8080/video'
+      # - ROS_HOSTNAME=localhost
+      # - ROS_MASTER_URI=http://localhost:11311
+      # - IP_CAMERA_URL='http://192.168.1.9:8080/video'
 
     command: 'roscore'
-    volumes:
-      - C:\Users\Hamza\Documents\Minesweeper-ros-system:/home/Minesweeper-ros-system
-    ports:
-      - "5000:5000"  # Map host port 5000 to container port 5000
-    build:
-      context: .
-      dockerfile: Dockerfile
+    #ports:
+     # - "5000:5000"  # Map host port 5000 to container port 5000

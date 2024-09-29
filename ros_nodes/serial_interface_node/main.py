@@ -36,7 +36,7 @@ def ros_node_setup():
         sys.exit()
 
     _cmd_sub = rospy.Subscriber(
-        '/keyboard_node/cmd', ros_std_msgs.String, _keyboard_cmd_read_handler)
+        '/joystick_node_test/joystick_test', ros_std_msgs.String, _keyboard_cmd_read_handler)
 
     serial_driver.init_driver()
     _settings_obj = set_man.get_settings()

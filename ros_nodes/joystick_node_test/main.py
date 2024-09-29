@@ -15,6 +15,8 @@ def ros_node_setup():
     global joystick
     global _joystick_handler
     global _joystick_pub
+    
+
     # Initialize serial communication (adjust '/dev/ttyACM0' if necessary)
 
     # Initialize pygame and the joystick module
@@ -50,12 +52,14 @@ def ros_node_setup():
 
 # Main loop to capture joystick button presses and send serial commands
 def ros_node_loop():
+    _previous_command='x'
+    command = 'x'
     try:
         while True:
             pygame.event.pump()  # Ensure pygame processes events
 
             # Default command is 'x' (stop) if no button is pressed
-            command = 'x'
+            
 
             # Check for specific button presses and assign commands
             if joystick.get_button(0):  # Button 0 -> Forward ('w')
@@ -67,9 +71,11 @@ def ros_node_loop():
             elif joystick.get_button(3):  # Button 3 -> Left ('a')
                 command = 'a'
             elif joystick.get_button(4):  # Button 4 -> ARM UP
-                command = 'z'
+                command = 'au'
             elif joystick.get_button(5):  # Button 5 -> ARM DOWN
-                command = 's'
+                command = 'ad'
+            elif joystick.get_button(11):    #Button 11 -> stop
+                command = 'x'
 
 #   # Check for events (e.g., joystick button presses, axis movements)
 #             for event in pygame.event.get():
@@ -88,10 +94,14 @@ def ros_node_loop():
 
             pygame.event.pump()  # Update the event queue
 
+            if command != _previous_command:
+                
+
             # Send the command via serial to the robot
             #ser.write(command.encode())
-            print(f"Sending: {command}")
-            _joystick_pub.publish(f"Sending: {command}")
+                print(f"Sending: {command}")
+                _joystick_pub.publish(command)
+                _previous_command=command
             #_joystick_pub.publish(f"Sending: {axis_x} and {axis_y}")
             # Optional: Read response from Arduino (if any), ignoring errors
             # response = ser.readline().decode('utf-8', errors='ignore').strip()
