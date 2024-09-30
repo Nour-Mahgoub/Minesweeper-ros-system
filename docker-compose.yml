@@ -28,4 +28,3 @@ services:
       - ROS_IP=192.168.45.23
     command: 'roscore'
 
->>>>>>> parent of 39a6e1d (edits)
