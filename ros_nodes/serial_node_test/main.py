@@ -39,20 +39,20 @@ def ros_node_setup():
 def ros_node_loop():
     while True:
     # Read user input
-        command = input("Enter command: ").strip()
+        #command = input("Enter command: ").strip()
 
         # Exit the loop if the user types 'exit'
-        if command.lower() == 'exit':
-            break
+       # if command.lower() == 'exit':
+         #   break
 
         # Send the command to Arduino
         ser.write((command + '\n').encode())
         print(f"Sent: {command}")
 
         # Optional: Read response from Arduino
-        response = ser.readline().decode('utf-8').strip()
-        if response:
-            print(f"Received from Arduino: {response}")
+      #  response = ser.readline().decode('utf-8').strip()
+       # if response:
+            #print(f"Received from Arduino: {response}")
 
 # Close the serial port
 ser.close()
