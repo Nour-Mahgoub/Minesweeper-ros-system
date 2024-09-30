@@ -11,6 +11,7 @@ services:
       # - ROS_MASTER_URI=http://localhost:11311
       # - IP_CAMERA_URL='http://192.168.1.9:8080/video'
     environment:
+<<<<<<< HEAD
       - ROS_MASTER_URI=http://192.168.0.103:11311/
       - ROS_IP=192.168.0.103
 
@@ -22,3 +23,9 @@ services:
     command: 'roscore'
     #ports:
      # - "5000:5000"  # Map host port 5000 to container port 5000
+=======
+      - ROS_MASTER_URI=http://192.168.45.235:11311/
+      - ROS_IP=192.168.45.23
+    command: 'roscore'
+
+>>>>>>> parent of 39a6e1d (edits)
