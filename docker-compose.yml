@@ -11,4 +11,14 @@ services:
       - ROS_MASTER_URI=http://192.168.45.235:11311/
       - ROS_IP=192.168.45.23
     command: 'roscore'
+<<<<<<< HEAD
 
+=======
+    volumes:
+      - C:\Users\Hamza\Documents\Minesweeper-ros-system:/home/Minesweeper-ros-system
+    ports:
+      - "5000:5000"  # Map host port 5000 to container port 5000
+    build:
+      context: .
+      dockerfile: Dockerfile
+>>>>>>> parent of 24a6456 (Update docker-compose.yml)
