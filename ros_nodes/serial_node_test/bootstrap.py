@@ -23,11 +23,11 @@ if __name__ == '__main__':
         if rospy.is_shutdown():
             break
 
-        try:
-            # change this
-            serial_node_test.ros_node_loop()
+        # try:
+        #     # change this
+        #     serial_node_test.ros_node_loop()
 
-        except rospy.ROSInterruptException:
-            break
+        # except rospy.ROSInterruptException:
+        #     break
 
         time.sleep(_NODE_DELAY)

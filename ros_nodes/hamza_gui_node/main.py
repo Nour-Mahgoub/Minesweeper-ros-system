@@ -55,7 +55,7 @@ def index():
 def capture():
     data = request.json
     key = data.get('key')
-
+    print(key)
     _cmd_pub.publish(key)
     return jsonify({'status': 'success'}), 200
 

@@ -85,6 +85,8 @@ def ros_node_loop():
     # read frame
 
     frame = _camera_adapter.get_frame()
+    # read frame
+    frame = _camera_adapter.get_frame()
 
 
 
