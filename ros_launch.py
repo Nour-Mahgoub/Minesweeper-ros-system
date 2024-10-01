@@ -26,6 +26,16 @@ for machine_name, machine_ip in network_config.items():
 
     proc_exit_code = os.system(f"ping -4 -c 1 {machine_ip}")
 
+
+for machine_name, machine_ip in network_config.items():
+    if machine_ip in ['', '127.0.0.1']:
+        continue
+
+    log_man.print_log(MODULE_ID, 'DEBUG',
+                       f"checking host {machine_name} with IP {machine_ip}")
+
+    proc_exit_code = os.system(f"ping -4 -c 1 {machine_ip}")
+
     if proc_exit_code != 0:
         log_man.print_log(
             MODULE_ID, 'ERROR', f"host {machine_name} with IP {machine_ip} is offline")

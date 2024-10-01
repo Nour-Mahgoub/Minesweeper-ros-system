@@ -8,17 +8,19 @@ services:
     image: 'ros:noetic-ros-base-focal'
     network_mode: 'host'
     environment:
-      - ROS_MASTER_URI=http://192.168.45.235:11311/
-      - ROS_IP=192.168.45.23
-    command: 'roscore'
-<<<<<<< HEAD
-
-=======
+      - ROS_MASTER_URI=http://192.168.51.28:11311/
+      - ROS_IP=192.168.51.28
+    
     volumes:
-      - C:\Users\Hamza\Documents\Minesweeper-ros-system:/home/Minesweeper-ros-system
+      - /home/pi/minesweeper-ros-backend/ros_nodes/keyboard_node/
+      - /home/pi/minesweeper-ros-backend/
+
+    command: 'roscore'
+    
     ports:
       - "5000:5000"  # Map host port 5000 to container port 5000
+      - "11311:11311"
+    
     build:
       context: .
       dockerfile: Dockerfile
->>>>>>> parent of 24a6456 (Update docker-compose.yml)

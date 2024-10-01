@@ -29,6 +29,16 @@ def _joystick_read_handler(msg: ros_std_msgs.String):
     
     print(f"sent to arduino : {msg.data}")
     #print(type(msg.data))
+    # time.sleep(1)
+      # Lower the timeout
+    # ser.open()
+    # if ser.is_open:
+    #     ser.write((command + '\n').encode())
+    #     time.sleep(1)
+    # else:
+    #     ser.open()
+    #     print("trying to open open")
+
     
     ser.write(msg.data.encode())
     #time.sleep(0.01)
