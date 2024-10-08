@@ -14,7 +14,7 @@ import lib.settings as set_man
 _NODE_NAME = 'serial_node_test'
 _cmd_joystick: rospy.Subscriber = None
 # ser = serial.Serial('/dev/ttyACM1', 9600, timeout=0.1)
-ser = serial.Serial('/dev/ttyACM0', 115200, timeout=0.1)
+ser = serial.Serial('/dev/ttyACM1', 115200, timeout=0.1)
 ser.flush()
 #time.sleep(2)
 print("You're connected to the arduino")

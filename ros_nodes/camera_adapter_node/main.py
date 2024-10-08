@@ -21,11 +21,6 @@ def ros_node_setup():
     global _settings_obj
 
 
-# module state
-_camera_adapter = cv2.VideoCapture(1)
-_cam_feed_pub: rospy.Publisher = None
-_settings_obj: dict = None
-
 
 def ros_node_setup():
     global _cam_feed_pub
@@ -48,7 +43,7 @@ def ros_node_setup():
 def ros_node_loop():
     # read frame
     cap_success, frame = _camera_adapter.read()
-    print(cap_success, frame)
+    # print(cap_success, frame)
     if not cap_success:
         return
     frame = cv2.resize(frame, (400, 400))
