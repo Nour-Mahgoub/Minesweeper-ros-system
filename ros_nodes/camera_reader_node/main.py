@@ -11,7 +11,6 @@ import lib.ros as ros_man
 # module config
 _NODE_NAME = 'camera_reader_node'
 
-
 # ros msgs handlers
 def _ros_frame_reader(msg: ros_std_msgs.String):
     input_bin_stream = msg.data.encode()
@@ -30,6 +29,7 @@ def _ros_frame_reader(msg: ros_std_msgs.String):
 
 
 def ros_node_setup():
+
     is_init = ros_man.init_node(_NODE_NAME)
 
     if not is_init:
@@ -39,6 +39,7 @@ def ros_node_setup():
         'camera_adapter_node', 'camera_feed')
 
     rospy.Subscriber(topic_id, ros_std_msgs.String, _ros_frame_reader)
+
 
 
 def ros_node_loop():

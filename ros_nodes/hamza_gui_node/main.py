@@ -10,9 +10,9 @@ import lib.ros as ros_man
 import lib.settings as set_man
 import std_msgs.msg as ros_std_msgs
 import sys
-import os
 import subprocess
-
+import base64
+import pickle
 
 
 # module state
@@ -20,7 +20,7 @@ _settings_obj: dict = None
 _cmd_pub: rospy.Publisher = None
 
 # module config
-_NODE_NAME = 'keyboard_node'
+_NODE_NAME = 'gui_node'
 
 def ros_node_setup():
     global _settings_obj
@@ -30,51 +30,44 @@ def ros_node_setup():
 
     if not is_init:
         sys.exit()
-
-    _settings_obj = set_man.get_settings()
-    q_size: int = _settings_obj['ros']['msg_queue_size']
-
-    cmd_topic_id = ros_man.create_topic_id('cmd')
-
-    _cmd_pub = rospy.Publisher(
-        cmd_topic_id, ros_std_msgs.String, queue_size=q_size)
     
+    
+    topic_id = ros_man.compute_topic_id(
+        'camera_adapter_node', 'camera_feed')
+
+    rospy.Subscriber(topic_id, ros_std_msgs.String, generate_frames)
 ############################################################
 
 app = Flask(__name__)
-#_camera_url = os.getenv('IP_CAMERA_URL')
-_camera_url='http://192.168.1.2:8080/video'
-cap = cv2.VideoCapture(_camera_url)
+
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-# Capture key presses
-@app.route('/capture', methods=['POST'])
-def capture():
-    data = request.json
-    key = data.get('key')
-    print(key)
-    _cmd_pub.publish(key)
-    return jsonify({'status': 'success'}), 200
 
 
+def generate_frames(msg: ros_std_msgs.String):
+    input_bin_stream = msg.data.encode()
 
-def generate_frames():
-    cap = cv2.VideoCapture(_camera_url)
+    # base64 decode
+    decoded_bin_frame = base64.b64decode(input_bin_stream)
+
+    # recover frame from binary stream
+    frame = pickle.loads(decoded_bin_frame)
+
+    # decode JPEG frame
+    frame = cv2.imdecode(frame, cv2.IMREAD_COLOR)
+
     while True:
-        success, frame = cap.read()
-        if not success:
-            break
-        else:
-            # Encode the frame in JPEG format
-            ret, buffer = cv2.imencode('.jpg', frame)
-            frame = buffer.tobytes()
 
-            # Yield the frame in the correct format for streaming
-            yield (b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+        # Encode the frame in JPEG format
+        ret, buffer = cv2.imencode('.jpg', frame)
+        frame = buffer.tobytes()
+
+        # Yield the frame in the correct format for streaming
+        yield (b'--frame\r\n'
+                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 @app.route('/video_feed')
 def video_feed():
