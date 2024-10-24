@@ -1,0 +1,5 @@
+/home/morshedy/Minesweeper-ros-system/ros_nodes/camera_reader_node/build/CMakeFiles/rebuild_cache.dir
+/home/morshedy/Minesweeper-ros-system/ros_nodes/camera_reader_node/build/CMakeFiles/edit_cache.dir
+/home/morshedy/Minesweeper-ros-system/ros_nodes/camera_reader_node/build/CMakeFiles/video_inference.dir
+/home/morshedy/Minesweeper-ros-system/ros_nodes/camera_reader_node/build/CMakeFiles/camera_inference.dir
+/home/morshedy/Minesweeper-ros-system/ros_nodes/camera_reader_node/build/CMakeFiles/image_inference.dir

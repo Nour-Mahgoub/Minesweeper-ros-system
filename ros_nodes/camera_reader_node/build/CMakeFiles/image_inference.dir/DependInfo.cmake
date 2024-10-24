@@ -1,0 +1,23 @@
+# The set of languages for which implicit dependencies are needed:
+set(CMAKE_DEPENDS_LANGUAGES
+  "CXX"
+  )
+# The set of files for implicit dependencies of each language:
+set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/morshedy/Minesweeper-ros-system/ros_nodes/camera_reader_node/src/image_inference.cpp" "/home/morshedy/Minesweeper-ros-system/ros_nodes/camera_reader_node/build/CMakeFiles/image_inference.dir/src/image_inference.cpp.o"
+  )
+set(CMAKE_CXX_COMPILER_ID "GNU")
+
+# The include file search paths:
+set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "../include"
+  "../onnxruntime-linux-x64-1.19.2/include"
+  "/usr/include/opencv4"
+  )
+
+# Targets to which this target links.
+set(CMAKE_TARGET_LINKED_INFO_FILES
+  )
+
+# Fortran module output directory.
+set(CMAKE_Fortran_TARGET_MODULE_DIR "")

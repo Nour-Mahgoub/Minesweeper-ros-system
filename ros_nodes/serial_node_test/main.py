@@ -5,7 +5,8 @@ import rospy
 import std_msgs.msg as ros_std_msgs
 import lib.serial_driver as serial_driver
 import sys
-
+import json
+import threading
 
 
 import lib.ros as ros_man
@@ -13,21 +14,43 @@ import lib.settings as set_man
 
 _NODE_NAME = 'serial_node_test'
 _cmd_joystick: rospy.Subscriber = None
-# ser = serial.Serial('/dev/ttyACM1', 9600, timeout=0.1)
-ser = serial.Serial('/dev/ttyACM1', 115200, timeout=0.1)
-ser.flush()
+_sensors_pub: rospy.Publisher = None
+
+acm = serial.Serial('/dev/ttyACM0', 115200, timeout=0.1)
+usb = serial.Serial('/dev/ttyUSB0', 115200, timeout=0.1)
+acm.flush()
+usb.flush()
+
 #time.sleep(2)
 print("You're connected to the arduino")
 
+# Function to read from the Arduino and publish it as a ROS message
+# def read_from_arduino():
+#     while not rospy.is_shutdown():
+#         if ser.in_waiting > 0:  # Check if there is data waiting in the serial buffer
+#             try:
+#                 arduino_data = ser.readline().decode('utf-8').strip()  # Read and decode the data
+#                 print(f"Received from Arduino on serial1: {arduino_data}")
+                
+#                 # You can publish this data to a ROS topic if necessary
+#                 arduino_pub.publish(arduino_data)
+
+#             except Exception as e:
+#                 print(f"Error reading from Arduino on serial1: {e}")
+#         time.sleep(0.01)  # Slight delay to avoid hogging the CPU
 
 def _joystick_read_handler(msg: ros_std_msgs.String):
     # out_serial_packet = f"0000,0000,0000,0000,{msg.data}"
-    
-    if not ser.is_open:
-         ser.open()
+    print("in joystick handler")
+    if not usb.is_open:
+        usb.open()
     # ser.write((msg.data + '\n').encode())
     
-    print(f"sent to arduino : {msg.data}")
+    print(f"sent to arduino on serial2: {msg.data}")
+  
+    usb.write(msg.data.encode())
+    print(f"sent already to arduino on serial2: {msg.data}")
+    time.sleep(0.01)
     #print(type(msg.data))
     # time.sleep(1)
       # Lower the timeout
@@ -40,7 +63,7 @@ def _joystick_read_handler(msg: ros_std_msgs.String):
     #     print("trying to open open")
 
     
-    ser.write(msg.data.encode())
+    # ser.write(msg.data.encode())
     #time.sleep(0.01)
     #
     #ser.close()
@@ -69,8 +92,9 @@ def _joystick_read_handler(msg: ros_std_msgs.String):
 def ros_node_setup():
     global _settings_obj
     global _cmd_joystick
+    global _sensors_pub
     is_init = ros_man.init_node(_NODE_NAME)
-    serial_driver.init_driver()
+    #serial_driver.init_driver(1)
     
 
     if not is_init:
@@ -83,6 +107,59 @@ def ros_node_setup():
     #time.sleep(0.1)
     _cmd_joystick=rospy.Subscriber(
                 '/joystick_node_test/joystick_test', ros_std_msgs.String, _joystick_read_handler)
+    
+    topic_id = ros_man.create_topic_id('sensors')
+    q_size: int = _settings_obj['ros']['msg_queue_size']
+
+    _sensors_pub = rospy.Publisher(
+        topic_id, ros_std_msgs.String, queue_size=q_size)
+    
+    # arduino_topic_id = ros_man.create_topic_id('arduino_data')
+    # # Publisher for data read from the Arduino
+    # arduino_pub = rospy.Publisher(arduino_topic_id, ros_std_msgs.String, queue_size=q_size)
+
+    # # Start the thread to continuously read data from the Arduino
+    # arduino_read_thread = threading.Thread(target=read_from_arduino)
+    # arduino_read_thread.start()
+def ros_node_loop():
+    # try:
+    #     if usb.in_waiting > 0:
+    #             data = usb.readline().decode('utf-8').strip()
+    #             print(f"Received sensor data: {data}")
+    #             return data
+    # except Exception as e:
+    #     print(f"Error receiving sensor data: {e}")
+        #if acm.in_waiting > 0:  # Check if there is data waiting in the serial buffer
+    if not acm.is_open:
+        acm.open()
+
+         
+        #print("we have data")
+    arduino_data = acm.readline().decode('utf-8').strip()  # Read and decode the data
+        #print(f"Received from Arduino on serial1: {arduino_data}")
+                        
+                        # You can publish this data to a ROS topic if necessary
+                        
+    _sensors_pub.publish(arduino_data)
+
+            # except Exception as e:
+            #     print(f"Error reading from Arduino on serial1: {e}")
+            #time.sleep(0.01)  # Slight delay to avoid hogging the CPU
+    
+
+
+acm.close()
+usb.close()
+# def close_serial():
+#     if ser.is_open:
+#         ser.close()
+#     print("Serial connection closed.")
+
+#     topic_id = ros_man.create_topic_id('sensors')
+#     q_size: int = _settings_obj['ros']['msg_queue_size']
+
+#     _sensors_pub = rospy.Publisher(
+#         topic_id, ros_std_msgs.String, queue_size=q_size)
       
 #def ros_node_loop():
     #while True:
@@ -103,7 +180,27 @@ def ros_node_setup():
         #if response:
             #print(f"Received from Arduino: {response}")
 
-# Close the serial port
-ser.close()
+# def ros_node_loop():
+#     # serial_input = serial_driver.read_raw()
 
+#     # if serial_input != '':
+#     #     acc_x = 0
+#     #     acc_y = 0
+#     #     acc_z = 0
+#     #     coil = int(serial_input)
+#     acc_x=ser.readline()
+#     print(acc_x)
+
+#         # publish serial data in ROS
+#     _sensors_pub.publish(json.dumps({
+#             'acc_x': acc_x,
+#             # 'acc_y': acc_y,
+#             # 'acc_z': acc_z,
+#             # 'coil': coil,
+#         }))
+
+
+#ser2.close()
+# Close the serial port
+#close_serial()
 

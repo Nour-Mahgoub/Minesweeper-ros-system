@@ -23,11 +23,4 @@ if __name__ == '__main__':
         if rospy.is_shutdown():
             break
 
-        try:
-            # change this
-            camera_reader_node.ros_node_loop()
-
-        except rospy.ROSInterruptException:
-            break
-
         time.sleep(_NODE_DELAY)
