@@ -138,7 +138,6 @@ def ros_node_loop():
                         command = 'n'
                     elif event.button ==6:
                         command='m'
-                    
                     else :
                         command='x'
                 

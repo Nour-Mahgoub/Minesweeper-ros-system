@@ -1,7 +1,7 @@
 {
     "networking": {
-        "main_cu": "192.168.236.230",
-        "raspi": "192.168.236.28"
+        "main_cu": "192.168.238.230",
+        "raspi": "192.168.238.28"
     },
     "ros": {
         "msg_queue_size": 10,
@@ -10,7 +10,7 @@
                 "joystick_node_test",
                 "camera_reader_node",
                 "camera_reader_node_2",
-                "localisation_node"
+                "localisation_node", "ekf_runner"
         
             ],
             "raspi": ["serial_node_test", "camera_adapter_node"]

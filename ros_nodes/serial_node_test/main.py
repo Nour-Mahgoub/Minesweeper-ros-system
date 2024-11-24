@@ -92,7 +92,8 @@ def _joystick_read_handler(msg: ros_std_msgs.String):
 def ros_node_setup():
     global _settings_obj
     global _cmd_joystick
-    global _sensors_pub
+    global _imu_pub
+    global _encoder_pub
     is_init = ros_man.init_node(_NODE_NAME)
     #serial_driver.init_driver(1)
     
@@ -108,11 +109,16 @@ def ros_node_setup():
     _cmd_joystick=rospy.Subscriber(
                 '/joystick_node_test/joystick_test', ros_std_msgs.String, _joystick_read_handler)
     
-    topic_id = ros_man.create_topic_id('sensors')
+    imu_id = ros_man.create_topic_id('/imu/data')
+    encoder_id = ros_man.create_topic_id('/odom')
     q_size: int = _settings_obj['ros']['msg_queue_size']
 
-    _sensors_pub = rospy.Publisher(
-        topic_id, ros_std_msgs.String, queue_size=q_size)
+    _imu_pub = rospy.Publisher(
+        imu_id, ros_std_msgs.String, queue_size=q_size)
+
+    _encoder_pub = rospy.Publisher(
+        encoder_id, ros_std_msgs.String, queue_size=q_size)
+
     
     # arduino_topic_id = ros_man.create_topic_id('arduino_data')
     # # Publisher for data read from the Arduino
@@ -135,12 +141,13 @@ def ros_node_loop():
 
          
         #print("we have data")
-    arduino_data = acm.readline().decode('utf-8').strip()  # Read and decode the data
+    arduino_data = acm.readline().decode('utf-8').strip().split()  # Read and decode the data
         #print(f"Received from Arduino on serial1: {arduino_data}")
                         
                         # You can publish this data to a ROS topic if necessary
                         
-    _sensors_pub.publish(arduino_data)
+    _imu_pub.publish(arduino_data[0])
+    _encoder_pub.publish(arduino_data[1])
 
             # except Exception as e:
             #     print(f"Error reading from Arduino on serial1: {e}")
