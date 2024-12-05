@@ -52,7 +52,7 @@ const float IOU_THRESHOLD = 0.45f;
 
 
 /**
- * @brief Struct to represent a bounding box.
+ * @brief Struct to represent a bounding.
  */
 
 // Struct to represent a bounding box

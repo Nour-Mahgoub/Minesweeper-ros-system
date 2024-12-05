@@ -128,7 +128,7 @@ cstring
 limits
 -
 
-/home/morshedy/Minesweeper-ros-system/ros_nodes/camera_reader_node/src/camera_inference.cpp
+/home/hamza/Minesweeper-ros-system/ros_nodes/camera_reader_node/src/camera_inference.cpp
 iostream
 -
 vector
@@ -140,9 +140,9 @@ atomic
 opencv2/highgui/highgui.hpp
 -
 YOLO10.hpp
-/home/morshedy/Minesweeper-ros-system/ros_nodes/camera_reader_node/src/YOLO10.hpp
+/home/hamza/Minesweeper-ros-system/ros_nodes/camera_reader_node/src/YOLO10.hpp
 tools/BoundedThreadSafeQueue.hpp
-/home/morshedy/Minesweeper-ros-system/ros_nodes/camera_reader_node/src/tools/BoundedThreadSafeQueue.hpp
+/home/hamza/Minesweeper-ros-system/ros_nodes/camera_reader_node/src/tools/BoundedThreadSafeQueue.hpp
 
 /usr/include/opencv4/opencv2/calib3d.hpp
 opencv2/core.hpp

@@ -47,8 +47,8 @@
     // #include "YOLO5.hpp"  // Uncomment for YOLOv5
     // #include "YOLO7.hpp"  // Uncomment for YOLOv7
     // #include "YOLO8.hpp"  // Uncomment for YOLOv8
-    #include "YOLO10.hpp" // Uncomment for YOLOv10
-    // #include "YOLO11.hpp" // Uncomment for YOLOv11
+    //#include "YOLO10.hpp" // Uncomment for YOLOv10
+    #include "YOLO11.hpp" // Uncomment for YOLOv11
 
     int main()
     {
@@ -60,8 +60,8 @@
         std::cerr << "Error getting current working directory" << std::endl;
     }
         // Paths to the model, labels, and test image
-        const std::string labelsPath = "../models/coco.names";
-        const std::string imagePath = "../frame.jpg";           // Primary image path
+        const std::string labelsPath = "models/coco.names";
+        const std::string imagePath = "frame.jpg";           // Primary image path
 
         // Uncomment the desired image path for testing
         // const std::string imagePath = "../data/happy_dogs.jpg";  // Alternate image
@@ -73,15 +73,15 @@
         // const std::string modelPath = "../models/yolo7-tiny.onnx";       // YOLOv7
         // const std::string modelPath = "../models/yolo8n.onnx"; // YOLOv8
         // const std::string modelPath = "../quantized_models/yolo10n_uint8.onnx"; // Quantized YOLOv10 
-        const std::string modelPath = "../models/best.onnx"; // YOLOv11 
+        const std::string modelPath = "models/bestV2.onnx"; // YOLOv11 
 
         // Initialize the YOLO detector with the chosen model and labels
         bool isGPU = false; // Set to false for CPU processing
         // YOLO7Detector detector(modelPath, labelsPath, isGPU);
         // YOLO5Detector detector(modelPath, labelsPath, isGPU);  // Uncomment for YOLOv5
         // YOLO8Detector detector(modelPath, labelsPath, isGPU);  // Uncomment for YOLOv8
-        YOLO10Detector detector(modelPath, labelsPath, isGPU); // Uncomment for YOLOv10
-        // YOLO11Detector detector(modelPath, labelsPath, isGPU); // Uncomment for YOLOv11
+        // YOLO10Detector detector(modelPath, labelsPath, isGPU); // Uncomment for YOLOv10
+        YOLO11Detector detector(modelPath, labelsPath, isGPU); // Uncomment for YOLOv11
 
         // Load an image
         cv::Mat image = cv::imread(imagePath);
@@ -100,14 +100,23 @@
         std::cout << "Detection completed in: " << duration.count() << " ms" << std::endl;
 
 
+        
+
         // Draw bounding boxes on the image
         detector.drawBoundingBox(image, results); // simple bbox drawing
+
         // detector.drawBoundingBoxMask(image, results); // Uncomment for mask drawing
+        bool is_detected=false;
+
+        if (!results.empty()){
+            is_detected=true;
+        }
+             
 
         // Display the image
         cv::imshow("Detections", image);
         cv::imwrite("out.jpg", image);
         cv::waitKey(100); // Wait for a key press to close the window
 
-        return 0;
+        return is_detected;
     }

@@ -74,7 +74,7 @@ int main()
     bool grayscaleMode = false; // Set to true to enable grayscale
 
     // std::string modelPath = "../models/yolo5-n6.onnx"; 
-    const std::string modelPath = "../models/best.onnx"; 
+    const std::string modelPath = "../models/bestV2.onnx"; 
     // std::string modelPath = "../models/yolo8n.onnx"; 
     // std::string modelPath = "../models/yolo8n.onnx"; 
     // std::string modelPath = "../models/yolo10n_uint8.onnx"; 

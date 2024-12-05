@@ -6,5 +6,5 @@ CXX_FLAGS = -O3 -march=native
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/morshedy/Minesweeper-ros-system/ros_nodes/camera_reader_node/include -I/home/morshedy/Minesweeper-ros-system/ros_nodes/camera_reader_node/onnxruntime-linux-x64-1.19.2/include -isystem /usr/include/opencv4 
+CXX_INCLUDES = -I/home/hamza/Minesweeper-ros-system/ros_nodes/camera_reader_node/include -I/home/hamza/Minesweeper-ros-system/ros_nodes/camera_reader_node/onnxruntime-linux-x64-1.19.2/include -isystem /usr/include/opencv4 
 

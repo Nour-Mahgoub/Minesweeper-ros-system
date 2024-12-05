@@ -1,1 +1,1 @@
-cd build/ && ./image_inference
+./build/image_inference

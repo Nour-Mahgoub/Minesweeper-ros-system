@@ -99,7 +99,7 @@ int main()
     const std::string outputPath = "../data/SIG_experience_center_processed.mp4"; // Output video path
 
     // Model paths for different YOLO versions
-    const std::string modelPath = "../models/best.onnx"; // YOLOv11
+    const std::string modelPath = "../models/bestV2.onnx"; // YOLOv11
 
     // Initialize the YOLO detector
     bool isGPU = true; // Set to false for CPU processing

@@ -17,7 +17,6 @@ _module_id = 'lib.ros'
 # utils
 def _get_node_machine_name():
     search_result = ''
-
     for mahine_name in _settings_obj['ros']['nodes']:
         if _node_name in _settings_obj['ros']['nodes'][mahine_name]:
             search_result = mahine_name

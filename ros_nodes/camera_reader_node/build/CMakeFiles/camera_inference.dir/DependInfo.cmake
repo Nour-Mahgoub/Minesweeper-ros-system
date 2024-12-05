@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/morshedy/Minesweeper-ros-system/ros_nodes/camera_reader_node/src/camera_inference.cpp" "/home/morshedy/Minesweeper-ros-system/ros_nodes/camera_reader_node/build/CMakeFiles/camera_inference.dir/src/camera_inference.cpp.o"
+  "/home/hamza/Minesweeper-ros-system/ros_nodes/camera_reader_node/src/camera_inference.cpp" "/home/hamza/Minesweeper-ros-system/ros_nodes/camera_reader_node/build/CMakeFiles/camera_inference.dir/src/camera_inference.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

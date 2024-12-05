@@ -1,4 +1,4 @@
-# Install script for directory: /home/morshedy/Minesweeper-ros-system/ros_nodes/camera_reader_node
+# Install script for directory: /home/hamza/Minesweeper-ros-system/ros_nodes/camera_reader_node
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/morshedy/Minesweeper-ros-system/ros_nodes/camera_reader_node/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/hamza/Minesweeper-ros-system/ros_nodes/camera_reader_node/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
